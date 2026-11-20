@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OMAR STORE | متجر الشحن الفوري</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg-dark: #070a12;
+      --bg-card: rgba(17, 24, 42, 0.85);
+      --bg-card-hover: rgba(25, 36, 62, 0.96);
+      --border: rgba(255, 255, 255, 0.09);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --primary: #6366f1;
+      --cyan: #06b6d4;
+      --gold: #f59e0b;
+      --whatsapp: #22c55e;
+      --telegram: #0ea5e9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image:
+        radial-gradient(circle at 12% 15%, rgba(99, 102, 241, 0.18), transparent 40%),
+        radial-gradient(circle at 88% 20%, rgba(6, 182, 212, 0.14), transparent 40%),
+        radial-gradient(circle at 50% 90%, rgba(245, 158, 11, 0.08), transparent 45%);
+    }
+
+    /* الهيدر */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(7, 10, 18, 0.84);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .logo-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--primary), var(--cyan));
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 1.15rem;
+      box-shadow: 0 8px 22px rgba(99, 102, 241, 0.35);
+    }
+
+    .logo-text {
+      font-size: 1.3rem;
+      font-weight: 900;
+    }
+
+    /* زر تواصل معنا أعلى اليسار */
+    .contact-box {
+      position: relative;
+    }
+
+    .contact-trigger {
+      background: linear-gradient(135deg, var(--primary), #4f46e5);
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 18px rgba(99, 102, 241, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .contact-trigger:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(99, 102, 241, 0.5);
+    }
+
+    .contact-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      width: 225px;
+      background: #11182a;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 8px;
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.6);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: all 0.2s ease;
+      z-index: 200;
+    }
+
+    .contact-menu.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 13px;
+      border-radius: 11px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: background 0.2s ease;
+    }
+
+    .contact-item.wa:hover {
+      background: rgba(34, 197, 94, 0.14);
+      color: #4ade80;
+    }
+
+    .contact-item.tg:hover {
+      background: rgba(14, 165, 233, 0.14);
+      color: #38bdf8;
+    }
+
+    .contact-item i.fa-whatsapp { color: var(--whatsapp); font-size: 1.2rem; }
+    .contact-item i.fa-telegram { color: var(--telegram); font-size: 1.2rem; }
+
+    /* المحتوى الرئيسي */
+    .wrapper {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 36px 20px 70px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(99, 102, 241, 0.14);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      color: #a5b4fc;
+      padding: 6px 15px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 4.5vw, 2.7rem);
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    /* خطوة 1: اختيار القسم */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 20px;
+    }
+
+    .category-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px 22px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .category-card:hover {
+      transform: translateY(-6px);
+      background: var(--bg-card-hover);
+      border-color: rgba(99, 102, 241, 0.55);
+    }
+
+    .cat-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 1.8rem;
+    }
+
+    .cat-pubg { background: rgba(245, 158, 11, 0.16); color: #fbbf24; }
+    .cat-tiktok { background: rgba(236, 72, 153, 0.16); color: #f472b6; }
+    .cat-pes { background: rgba(59, 130, 246, 0.16); color: #60a5fa; }
+
+    .cat-title { font-size: 1.25rem; font-weight: 800; }
+    .cat-desc { font-size: 0.9rem; color: var(--muted); }
+
+    .cat-cta {
+      padding: 9px 18px;
+      border-radius: 11px;
+      background: rgba(255, 255, 255, 0.07);
+      font-weight: 700;
+      font-size: 0.88rem;
+    }
+
+    /* خطوة 2 و 3 */
+    .view-section {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 22px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .back-btn {
+      background: var(--bg-card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 9px 15px;
+      border-radius: 11px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .back-btn:hover {
+      background: var(--bg-card-hover);
+    }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .package-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .package-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(245, 158, 11, 0.55);
+      background: var(--bg-card-hover);
+    }
+
+    .pkg-amount {
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .pkg-price {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--gold);
+      direction: ltr;
+      text-align: right;
+    }
+
+    .select-pkg-btn {
+      width: 100%;
+      padding: 10px;
+      border-radius: 11px;
+      border: none;
+      background: linear-gradient(135deg, var(--primary), var(--cyan));
+      color: #fff;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    /* خطوة 3: طريقة الدفع + رقم المحول منه + رسالة السكرين */
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 22px;
+    }
+
+    .panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 24px;
+    }
+
+    .panel-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .payment-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-bottom: 18px;
+    }
+
+    .method-box {
+      padding: 13px 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .method-box.selected {
+      border-color: var(--cyan);
+      background: rgba(6, 182, 212, 0.09);
+    }
+
+    .method-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .method-name {
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    .copy-pill {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #e2e8f0;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .copy-pill:hover {
+      background: rgba(99, 102, 241, 0.25);
+    }
+
+    .method-account {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--gold);
+      direction: ltr;
+      text-align: right;
+    }
+
+    .sender-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .sender-label {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #e2e8f0;
+    }
+
+    .sender-input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: #0b101d;
+      color: #fff;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.96rem;
+      font-weight: 700;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .sender-input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.16);
+    }
+
+    .sender-hint {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* بطاقة الرسالة الجاهزة للسكرين */
+    .screenshot-banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #fcd34d;
+      padding: 7px 13px;
+      border-radius: 10px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .receipt-box {
+      background: #0b101d;
+      border: 1px dashed rgba(99, 102, 241, 0.55);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.93rem;
+    }
+
+    .receipt-row:last-child {
+      border-bottom: none;
+    }
+
+    .receipt-label {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .receipt-val {
+      font-weight: 800;
+      color: #f8fafc;
+      text-align: left;
+    }
+
+    .receipt-val.price {
+      color: var(--gold);
+    }
+
+    .receipt-val.sender-num {
+      color: #38bdf8;
+      direction: ltr;
+    }
+
+    .send-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .send-btn {
+      text-decoration: none;
+      padding: 13px 14px;
+      border-radius: 13px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .send-btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.95;
+    }
+
+    .send-wa {
+      background: var(--whatsapp);
+      color: #052e16;
+    }
+
+    .send-tg {
+      background: rgba(14, 165, 233, 0.18);
+      color: #38bdf8;
+      border: 1px solid rgba(14, 165, 233, 0.35);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #1e293b;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease;
+      z-index: 300;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav">
+      <a href="#" class="logo" onclick="goToStep1(event)">
+        <div class="logo-badge">OS</div>
+        <span class="logo-text">OMAR STORE</span>
+      </a>
+
+      <!-- زر تواصل معنا أعلى اليسار -->
+      <div class="contact-box" id="contactBox">
+        <button type="button" class="contact-trigger" id="contactBtn" aria-expanded="false">
+          <i class="fa-solid fa-comment-dots"></i>
+          <span>تواصل معنا</span>
+          <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem;"></i>
+        </button>
+
+        <div class="contact-menu" id="contactMenu">
+          <a href="#" id="headerWaLink" target="_blank" rel="noopener noreferrer" class="contact-item wa">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>واتساب</span>
+          </a>
+          <a href="#" id="headerTgLink" target="_blank" rel="noopener noreferrer" class="contact-item tg">
+            <i class="fa-brands fa-telegram"></i>
+            <span>تليجرام</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrapper">
+    <div class="hero">
+      <div class="step-badge" id="stepBadge">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>الخطوة 1: اختر القسم</span>
+      </div>
+      <h1>متجر <span>OMAR STORE</span></h1>
+      <p id="heroDesc">اختر القسم الذي تريد شحن باقاته أولاً.</p>
+    </div>
+
+    <!-- الخطوة 1: اختيار القسم -->
+    <section class="categories-grid" id="step1Section">
+      <div class="category-card" onclick="openCategory('pubg')">
+        <div class="cat-icon cat-pubg"><i class="fa-solid fa-crosshairs"></i></div>
+        <h2 class="cat-title">شدات ببجي (PUBG UC)</h2>
+        <p class="cat-desc">شحن فوري بالـ ID • متوفر جميع الباقات</p>
+        <span class="cat-cta">عرض الباقات</span>
+      </div>
+
+      <div class="category-card" onclick="openCategory('tiktok')">
+        <div class="cat-icon cat-tiktok"><i class="fa-brands fa-tiktok"></i></div>
+        <h2 class="cat-title">عملات تيك توك (TikTok)</h2>
+        <p class="cat-desc">شحن عملات تيك توك على مدار اليوم</p>
+        <span class="cat-cta">عرض الباقات</span>
+      </div>
+
+      <div class="category-card" onclick="openCategory('pes')">
+        <div class="cat-icon cat-pes"><i class="fa-solid fa-futbol"></i></div>
+        <h2 class="cat-title">شحن بيس (PES Coins)</h2>
+        <p class="cat-desc">باقات كوينز PES أندرويد بأسعار مميزة</p>
+        <span class="cat-cta">عرض الباقات</span>
+      </div>
+    </section>
+
+    <!-- الخطوة 2: اختيار الباقة -->
+    <section class="view-section" id="step2Section">
+      <div class="topbar">
+        <div>
+          <h2 id="catHeading" style="font-size: 1.4rem; font-weight: 900;">الباقات</h2>
+          <span style="color: var(--muted); font-size: 0.9rem;">اضغط على الباقة لعرض طريقة الدفع وإدخال رقم التحويل</span>
+        </div>
+        <button type="button" class="back-btn" onclick="goToStep1()">
+          <i class="fa-solid fa-arrow-right"></i>
+          <span>تغيير القسم</span>
+        </button>
+      </div>
+
+      <div class="packages-grid" id="packagesGrid"></div>
+    </section>
+
+    <!-- الخطوة 3: طريقة الدفع + رقم المحول منه + رسالة السكرين والإرسال -->
+    <section class="view-section" id="step3Section">
+      <div class="topbar">
+        <div>
+          <h2 style="font-size: 1.4rem; font-weight: 900;">طريقة الدفع وإرسال الطلب</h2>
+          <span style="color: var(--muted); font-size: 0.9rem;">اكتب الرقم اللي هتحول منه، خد سكرين، ثم ابعت الرسالة جاهزة</span>
+        </div>
+        <button type="button" class="back-btn" onclick="backToPackages()">
+          <i class="fa-solid fa-arrow-right"></i>
+          <span>تغيير الباقة</span>
+        </button>
+      </div>
+
+      <div class="checkout-layout">
+        <!-- طريقة الدفع وإدخال الرقم المحول منه -->
+        <div class="panel">
+          <div class="panel-title">
+            <i class="fa-solid fa-wallet" style="color: var(--cyan);"></i>
+            <span>1) اختر طريقة الدفع</span>
+          </div>
+          <div class="payment-methods" id="paymentMethodsList"></div>
+
+          <div class="sender-input-group">
+            <label for="senderNumberInput" class="sender-label">
+              <i class="fa-solid fa-phone" style="color: var(--gold); margin-left: 6px;"></i>
+              2) اكتب الرقم الذي ستحوّل منه
+            </label>
+            <input
+              type="tel"
+              id="senderNumberInput"
+              class="sender-input"
+              placeholder="مثال: 01097691581"
+              oninput="handleSenderInput()"
+            />
+            <span class="sender-hint">سيظهر هذا الرقم تلقائياً في رسالة الطلب والواتساب.</span>
+          </div>
+        </div>
+
+        <!-- رسالة السكرين والإرسال الجاهز -->
+        <div class="panel">
+          <div class="panel-title">
+            <i class="fa-solid fa-receipt" style="color: var(--gold);"></i>
+            <span>3) رسالة الطلب (جاهزة للسكرين والإرسال)</span>
+          </div>
+
+          <div class="screenshot-banner">
+            <i class="fa-solid fa-camera"></i>
+            <span>خد سكرين شوت للرسالة دي ثم اضغط إرسال واتساب</span>
+          </div>
+
+          <div class="receipt-box" id="receiptBox">
+            <div class="receipt-row">
+              <span class="receipt-label">المتجر:</span>
+              <span class="receipt-val">OMAR STORE</span>
+            </div>
+            <div class="receipt-row">
+              <span class="receipt-label">القسم:</span>
+              <span class="receipt-val" id="resCategory">-</span>
+            </div>
+            <div class="receipt-row">
+              <span class="receipt-label">الباقة:</span>
+              <span class="receipt-val" id="resPackage">-</span>
+            </div>
+            <div class="receipt-row">
+              <span class="receipt-label">السعر:</span>
+              <span class="receipt-val price" id="resPrice">-</span>
+            </div>
+            <div class="receipt-row">
+              <span class="receipt-label">طريقة الدفع:</span>
+              <span class="receipt-val" id="resPayment">-</span>
+            </div>
+            <div class="receipt-row">
+              <span class="receipt-label">الرقم المحول منه:</span>
+              <span class="receipt-val sender-num" id="resSenderNumber">لم يُكتب بعد</span>
+            </div>
+          </div>
+
+          <div class="send-actions">
+            <a href="#" id="finalWhatsappBtn" target="_blank" rel="noopener noreferrer" class="send-btn send-wa">
+              <i class="fa-brands fa-whatsapp" style="font-size: 1.15rem;"></i>
+              <span>إرسال واتساب</span>
+            </a>
+            <a href="#" id="finalTelegramBtn" target="_blank" rel="noopener noreferrer" class="send-btn send-tg">
+              <i class="fa-brands fa-telegram" style="font-size: 1.15rem;"></i>
+              <span>إرسال تليجرام</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast">تم النسخ بنجاح</div>
+
+  <footer>
+    جميع الحقوق محفوظة © <strong style="color:#fff;">OMAR STORE</strong>
+  </footer>
+
+  <script>
+    // =========================================================================
+    // 1) مكان تعديل الرقم وحساب التليجرام وطرق الدفع:
+    // =========================================================================
+    const STORE_CONFIG = {
+      // رقم الواتساب بكود الدولة بدون + أو أصفار بادئة (مثال لمصر: "201012345678")
+      whatsappNumber: "201097691581",
+
+      // يوزر التليجرام بدون @ أو الرابط الكامل مثل "https://t.me/username"
+      telegramUsername: "OmarStoreAdmin",
+
+      // رسالة زر "تواصل معنا" في الأعلى
+      generalContactMessage: "مرحباً OMAR STORE، أريد الاستفسار عن الشحن.",
+
+      // طرق الدفع المتاحة (عدّل الاسم والرقم/الحساب لأرقامك الفعلية)
+      paymentMethods: [
+        {
+          id: "vodafone",
+          name: "فودافون كاش (Vodafone Cash)",
+          account: "01097691581"
+        },
+        {
+          id: "instapay",
+          name: "إنستا باي (InstaPay)",
+          account: "omarstore@instapay"
+        },
+        {
+          id: "wallet",
+          name: "محفظة إلكترونية (Etisalat / Orange / WE)",
+          account: "01097691581"
+        }
+      ]
+    };
+
+    // =========================================================================
+    // 2) بيانات الأقسام والباقات:
+    // =========================================================================
+    const STORE_DATA = {
+      pubg: {
+        title: "شدات ببجي (PUBG UC)",
+        items: [
+          { amount: "30 UC", price: "35 L.E" },
+          { amount: "60 UC", price: "55 L.E" },
+          { amount: "325 UC", price: "250 L.E" },
+          { amount: "660 UC", price: "480 L.E" },
+          { amount: "1800 UC", price: "1300 L.E" },
+          { amount: "3850 UC", price: "2350 L.E" },
+          { amount: "8100 UC", price: "4400 L.E" }
+        ]
+      },
+      tiktok: {
+        title: "عملات تيك توك (TikTok)",
+        items: [
+          { amount: "70 كوين", price: "60 EGP" },
+          { amount: "350 كوين", price: "230 EGP" },
+          { amount: "700 كوين", price: "430 EGP" },
+          { amount: "1000 كوين", price: "630 EGP" },
+          { amount: "1400 كوين", price: "850 EGP" },
+          { amount: "2000 كوين", price: "1250 EGP" },
+          { amount: "3500 كوين", price: "2100 EGP" },
+          { amount: "4000 كوين", price: "2400 EGP" },
+          { amount: "5000 كوين", price: "2950 EGP" },
+          { amount: "7000 كوين", price: "4300 EGP" },
+          { amount: "14000 كوين", price: "8500 EGP" }
+        ]
+      },
+      pes: {
+        title: "شحن بيس (PES)",
+        items: [
+          { amount: "130 كوين", price: "80 EGP" },
+          { amount: "300 كوين", price: "200 EGP" },
+          { amount: "550 كوين", price: "300 EGP" },
+          { amount: "750 كوين", price: "400 EGP" },
+          { amount: "1040 كوين", price: "500 EGP" },
+          { amount: "2130 كوين", price: "1100 EGP" },
+          { amount: "3250 كوين", price: "1500 EGP" },
+          { amount: "5700 كوين", price: "2400 EGP" }
+        ]
+      }
+    };
+
+    let currentCategoryKey = null;
+    let currentPackage = null;
+    let selectedPayment = STORE_CONFIG.paymentMethods[0];
+    let senderNumberValue = "";
+
+    function buildWhatsappLink(text) {
+      return `https://wa.me/${STORE_CONFIG.whatsappNumber}?text=${encodeURIComponent(text)}`;
+    }
+
+    function buildTelegramLink() {
+      const tg = STORE_CONFIG.telegramUsername.trim();
+      return tg.startsWith("http") ? tg : `https://t.me/${tg.replace(/^@/, "")}`;
+    }
+
+    // ضبط قائمة "تواصل معنا" في الأعلى
+    document.getElementById("headerWaLink").href = buildWhatsappLink(STORE_CONFIG.generalContactMessage);
+    document.getElementById("headerTgLink").href = buildTelegramLink();
+
+    const contactBtn = document.getElementById("contactBtn");
+    const contactMenu = document.getElementById("contactMenu");
+
+    contactBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = contactMenu.classList.toggle("open");
+      contactBtn.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!document.getElementById("contactBox").contains(e.target)) {
+        contactMenu.classList.remove("open");
+        contactBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    function showToast(msg) {
+      const toast = document.getElementById("toast");
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2000);
+    }
+
+    function copyAccount(event, accountText) {
+      event.stopPropagation();
+      navigator.clipboard.writeText(accountText).then(() => {
+        showToast("تم نسخ رقم/حساب الدفع");
+      });
+    }
+
+    function hideAllViews() {
+      document.getElementById("step1Section").style.display = "none";
+      document.getElementById("step2Section").classList.remove("active");
+      document.getElementById("step3Section").classList.remove("active");
+    }
+
+    // الخطوة 1: العودة لاختيار القسم
+    function goToStep1(event) {
+      if (event) event.preventDefault();
+      hideAllViews();
+      document.getElementById("step1Section").style.display = "grid";
+      document.getElementById("stepBadge").innerHTML =
+        `<i class="fa-solid fa-layer-group"></i><span>الخطوة 1: اختر القسم</span>`;
+      document.getElementById("heroDesc").textContent =
+        "اختر القسم الذي تريد شحن باقاته أولاً.";
+    }
+
+    // الخطوة 2: عرض باقات القسم المختار
+    function openCategory(catKey) {
+      const cat = STORE_DATA[catKey];
+      if (!cat) return;
+
+      currentCategoryKey = catKey;
+      hideAllViews();
+
+      const step2 = document.getElementById("step2Section");
+      step2.classList.add("active");
+
+      document.getElementById("stepBadge").innerHTML =
+        `<i class="fa-solid fa-tags"></i><span>الخطوة 2: اختر الباقة</span>`;
+      document.getElementById("heroDesc").textContent =
+        "اختر الباقة التي تريدها لعرض طريقة الدفع وإدخال رقم التحويل.";
+
+      document.getElementById("catHeading").textContent = cat.title;
+
+      const grid = document.getElementById("packagesGrid");
+      grid.innerHTML = "";
+
+      cat.items.forEach((pkg) => {
+        const card = document.createElement("div");
+        card.className = "package-card";
+        card.onclick = () => openPaymentAndReceipt(pkg);
+        card.innerHTML = `
+          <div>
+            <div class="pkg-amount">${pkg.amount}</div>
+            <div class="pkg-price">${pkg.price}</div>
+          </div>
+          <button type="button" class="select-pkg-btn">اختيار الباقة</button>
+        `;
+        grid.appendChild(card);
+      });
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function backToPackages() {
+      if (currentCategoryKey) {
+        openCategory(currentCategoryKey);
+      } else {
+        goToStep1();
+      }
+    }
+
+    // الخطوة 3: عرض طريقة الدفع + خانة رقم المحول منه + رسالة السكرين والإرسال
+    function openPaymentAndReceipt(pkg) {
+      currentPackage = pkg;
+      senderNumberValue = "";
+      document.getElementById("senderNumberInput").value = "";
+
+      hideAllViews();
+
+      const step3 = document.getElementById("step3Section");
+      step3.classList.add("active");
+
+      document.getElementById("stepBadge").innerHTML =
+        `<i class="fa-solid fa-check-circle"></i><span>الخطوة 3: الدفع والرسالة الجاهزة</span>`;
+      document.getElementById("heroDesc").textContent =
+        "اكتب الرقم اللي هتحول منه، خد سكرين للرسالة، واضغط إرسال واتساب.";
+
+      renderPaymentMethods();
+      updateReceiptAndLinks();
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function renderPaymentMethods() {
+      const list = document.getElementById("paymentMethodsList");
+      list.innerHTML = "";
+
+      STORE_CONFIG.paymentMethods.forEach((method) => {
+        const isSelected = selectedPayment && selectedPayment.id === method.id;
+        const box = document.createElement("div");
+        box.className = `method-box ${isSelected ? "selected" : ""}`;
+        box.onclick = () => {
+          selectedPayment = method;
+          renderPaymentMethods();
+          updateReceiptAndLinks();
+        };
+
+        box.innerHTML = `
+          <div class="method-top">
+            <span class="method-name">${method.name}</span>
+            <button type="button" class="copy-pill" onclick="copyAccount(event, '${method.account}')">
+              <i class="fa-regular fa-copy"></i> نسخ
+            </button>
+          </div>
+          <div class="method-account">${method.account}</div>
+        `;
+        list.appendChild(box);
+      });
+    }
+
+    function handleSenderInput() {
+      senderNumberValue = document.getElementById("senderNumberInput").value.trim();
+      updateReceiptAndLinks();
+    }
+
+    function updateReceiptAndLinks() {
+      if (!currentCategoryKey || !currentPackage || !selectedPayment) return;
+
+      const catTitle = STORE_DATA[currentCategoryKey].title;
+      const displaySender = senderNumberValue || "لم يُكتب بعد";
+
+      document.getElementById("resCategory").textContent = catTitle;
+      document.getElementById("resPackage").textContent = currentPackage.amount;
+      document.getElementById("resPrice").textContent = currentPackage.price;
+      document.getElementById("resPayment").textContent = `${selectedPayment.name} (${selectedPayment.account})`;
+      document.getElementById("resSenderNumber").textContent = displaySender;
+
+      // رسالة الباقة الجاهزة شاملاً الرقم الذي سيحوّل منه العميل
+      const readyMessage =
+`طلب جديد من OMAR STORE:
+• القسم: ${catTitle}
+• الباقة: ${currentPackage.amount}
+• السعر: ${currentPackage.price}
+• طريقة الدفع: ${selectedPayment.name} (${selectedPayment.account})
+• الرقم المحول منه: ${displaySender}`;
+
+      document.getElementById("finalWhatsappBtn").href = buildWhatsappLink(readyMessage);
+      document.getElementById("finalTelegramBtn").href = buildTelegramLink();
+    }
+  </script>
+</body>
+</html>
